@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="boardVM"
+            type="com.davek.tictactoe.viewmodels.BoardViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.BoardFragment">
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_game_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/game_size_three"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{boardVM.isGameSizeToggleEnabled()}"
+                android:onClick="@{() -> boardVM.onGameSizeThreeToggleClick()}"
+                android:text="@string/board_fragment_game_size_toggle_three" />
+
+            <Button
+                android:id="@+id/game_size_ten"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="@{boardVM.isGameSizeToggleEnabled()}"
+                android:onClick="@{() -> boardVM.onGameSizeTenToggleClick()}"
+                android:text="@string/board_fragment_game_size_toggle_ten" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_game_board"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:overScrollMode="never"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            app:cells="@{boardVM.cells}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toggle_game_size"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/tv_replay_request_sent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/board_fragment_replay_request_sent"
+            android:textSize="30sp"
+            android:visibility="@{boardVM.requestedReplay ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/current_player_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_game_board" />
+
+        <Button
+            android:id="@+id/bt_quit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_outline_x_24"
+            android:enabled="@{boardVM.requestedReplay == false}"
+            android:onClick="@{() -> boardVM.onQuitButtonClick()}"
+            android:visibility="@{boardVM.isQuitButtonVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/toggle_game_size"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_previous_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> boardVM.onPreviousMoveClick()}"
+            android:text="@string/board_fragment_previous_move_button"
+            android:textSize="30sp"
+            android:visibility="@{boardVM.areArrowButtonsVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/current_player_status"
+            app:layout_constraintEnd_toStartOf="@id/bt_next_move"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_game_board" />
+
+        <Button
+            android:id="@+id/bt_next_move"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> boardVM.onNextMoveClick()}"
+            android:text="@string/board_fragment_next_move_button"
+            android:textSize="30sp"
+            android:visibility="@{boardVM.areArrowButtonsVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/opponent_player_status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bt_previous_move"
+            app:layout_constraintTop_toBottomOf="@id/rv_game_board" />
+
+        <TextView
+            android:id="@+id/current_player_status"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:gravity="center_vertical|start"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@{boardVM.myNickname}"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:layout_margin="1dp"
+            app:currentPlayerSign="@{boardVM.isCurrentPlayerO}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/opponent_player_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:playerStatus="@{boardVM.isCurrentPlayerTurn}"
+            tools:text="heyyy" />
+
+        <TextView
+            android:id="@+id/opponent_player_status"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:gravity="center_vertical|end"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_margin="1dp"
+            android:text="@{boardVM.opponentNickname}"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/current_player_status"
+            app:opponentPlayerSign="@{boardVM.isCurrentPlayerO}"
+            app:playerStatus="@{!boardVM.isCurrentPlayerTurn}"
+            tools:text="m76kim" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

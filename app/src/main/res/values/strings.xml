@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="empty_string" />
+
+    <string-array name="main_tab_titles">
+        <item>Search Opponent</item>
+        <item>Saved Games</item>
+    </string-array>
+
+    <string name="tab_title_search_opponent">Search Opponent</string>
+    <string name="tab_title_saved_games">Saved Games</string>
+
+    <string name="dialog_add_nickname_title">Add your nickname</string>
+    <string name="dialog_add_nickname_hint">Nickname</string>
+    <string name="dialog_add_nickname_already_taken_error">&quot;%1$s&quot; is already taken</string>
+    <string name="dialog_add_nickname_positive_button">Yes</string>
+    <string name="dialog_add_nickname_negative_button">No</string>
+
+    <string name="dialog_nickname_required_title">Nickname Required</string>
+    <string name="dialog_nickname_required_body">Nickname is required for online game mode. Do you want to cancel online game mode?</string>
+    <string name="dialog_nickname_required_positive_button">Yes</string>
+    <string name="dialog_nickname_required_negative_button">No</string>
+
+    <string name="dialog_result_title_win">Win</string>
+    <string name="dialog_result_title_lose">Lose</string>
+    <string name="dialog_result_title_tie">Tie</string>
+    <string name="dialog_result_request_replay_button">Request Replay</string>
+    <string name="dialog_result_save_game_button">Save Game</string>
+    <string name="dialog_result_finish_button">Finish</string>
+
+    <string name="dialog_confirm_quit_title">Quit</string>
+    <string name="dialog_confirm_quit_body">Do you want to quit the current game?</string>
+    <string name="dialog_confirm_quit_positive_button">Quit</string>
+    <string name="dialog_confirm_quit_negative_button">Cancel</string>
+
+    <string name="dialog_offline_game_end_title">Game Over</string>
+    <string name="dialog_offline_game_end_body">Player %1$s won</string>
+    <string name="dialog_offline_game_end_body_tie">@string/dialog_result_title_tie</string>
+    <string name="dialog_offline_game_end_positive_button">Play Again</string>
+    <string name="dialog_offline_game_end_negative_button">Cancel</string>
+
+    <string name="dialog_game_request_accept_button">Accept</string>
+    <string name="dialog_game_request_decline_button">Decline</string>
+    <string name="dialog_game_request_cancel_button">Cancel</string>
+    <string name="dialog_game_request_sending_message">Waiting for %1$s</string>
+    <string name="dialog_game_request_receiving_message">Game request from %1$s</string>
+
+    <string name="dialog_delete_saved_game_title">Delete</string>
+    <string name="dialog_delete_saved_game_body">Do you want to delete this game?</string>
+    <string name="dialog_delete_saved_game_positive_button">Delete</string>
+    <string name="dialog_delete_saved_game_negative_button">Cancel</string>
+
+    <string name="play_option_fragment_title">Tic Tac Toe\nOnline</string>
+    <string name="play_option_fragment_offline_mode_button">Play Offline</string>
+    <string name="play_option_fragment_online_mode_button">Play Online</string>
+    <string name="play_option_fragment_login_button">Login</string>
+    <string name="play_option_fragment_logout_button">Logout</string>
+
+    <string name="board_fragment_game_size_toggle_three">3x3</string>
+    <string name="board_fragment_game_size_toggle_ten">10x10</string>
+    <string name="board_fragment_replay_request_sent">Replay request sent</string>
+    <string name="board_fragment_previous_move_button">Prev</string>
+    <string name="board_fragment_next_move_button">Next</string>
+
+    <string name="search_opponent_fragment_title">Hello, %1$s</string>
+    <string name="search_opponent_fragment_search_button">Search</string>
+    <string name="search_opponent_fragment_request_button">Request</string>
+
+    <string name="saved_games_fragment_game_result_won">Won</string>
+    <string name="saved_games_fragment_game_result_lost">Lost</string>
+    <string name="saved_games_fragment_game_result_tie">Tie</string>
+    <string name="saved_games_fragment_game_move_count">%1$d moves</string>
+    <string name="saved_games_fragment_opponent_nickname">vs %1$s</string>
+
+</resources>

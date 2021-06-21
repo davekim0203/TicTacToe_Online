@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="gameRequestVM"
+            type="com.davek.tictactoe.viewmodels.GameRequestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_dialog_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            tools:text="Game request from m76kim"
+            android:gravity="center"
+            app:requestDialogMessage="@{gameRequestVM.requestInfoForMessage}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_game_request_accept_button"
+            android:visibility="@{gameRequestVM.isSending ? View.GONE : View.VISIBLE}"
+            android:onClick="@{() -> gameRequestVM.onAcceptButtonClick()}"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_decline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_body" />
+
+        <Button
+            android:id="@+id/btn_decline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{gameRequestVM.isSending ? @string/dialog_game_request_cancel_button : @string/dialog_game_request_decline_button}"
+            android:onClick="@{() -> gameRequestVM.onDeclineButtonClick()}"
+            tools:text="Decline"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_accept"
+            app:layout_constraintTop_toBottomOf="@id/tv_dialog_body" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

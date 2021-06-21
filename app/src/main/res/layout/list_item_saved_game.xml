@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="savedGame"
+            type="com.davek.tictactoe.models.SavedGameWithId"/>
+
+        <variable
+            name="savedGameVM"
+            type="com.davek.tictactoe.viewmodels.SavedGamesViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_item_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="@{() -> savedGameVM.onSavedGameClick(savedGame.savedGame)}"
+        app:onSavedGameLongPressed="@{() -> savedGameVM.onSavedGameLongPress(savedGame.gameDocId)}">
+
+        <TextView
+            android:id="@+id/tv_game_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:gameResultText="@{savedGame.savedGame.gameResultId}"
+            app:layout_constraintEnd_toStartOf="@+id/tv_game_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Won" />
+
+        <TextView
+            android:id="@+id/tv_opponent_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="15sp"
+            tools:text="vs m76kim"
+            android:text="@{String.format(@string/saved_games_fragment_opponent_nickname, savedGame.savedGame.opponentNickname)}"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_game_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_game_result" />
+
+        <TextView
+            android:id="@+id/tv_move_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/view_game_result"
+            app:layout_constraintTop_toTopOf="parent"
+            app:gameMoveCountText="@{savedGame.savedGame.moves.size()}"
+            tools:text="3 moves" />
+
+        <TextView
+            android:id="@+id/tv_game_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:savedGameDateText="@{savedGame.savedGame.date.toDate()}"
+            app:layout_constraintEnd_toStartOf="@+id/view_game_result"
+            app:layout_constraintTop_toBottomOf="@+id/tv_move_count"
+            tools:text="2021-06-06" />
+
+        <View
+            android:id="@+id/view_game_result"
+            android:layout_width="15dp"
+            android:layout_height="0dp"
+            app:gameResultBarColor="@{savedGame.savedGame.gameResultId}"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

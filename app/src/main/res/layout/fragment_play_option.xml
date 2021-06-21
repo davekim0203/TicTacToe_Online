@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="optionVM"
+            type="com.davek.tictactoe.viewmodels.PlayOptionViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.PlayOptionFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_option_fragment_title"
+            android:textSize="50sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@id/bt_offline_play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_offline_play"
+            style="@style/MainMenuBigButtonStyle"
+            android:text="@string/play_option_fragment_offline_mode_button"
+            android:onClick="@{() -> optionVM.onPlayOfflineClick()}"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_online_play"
+            style="@style/MainMenuBigButtonStyle"
+            android:text="@string/play_option_fragment_online_mode_button"
+            android:onClick="@{() -> optionVM.onPlayOnlineClick()}"
+            android:enabled="@{optionVM.isLoggedIn}"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintBottom_toTopOf="@id/bt_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_offline_play" />
+
+        <Button
+            android:id="@+id/bt_login"
+            style="@style/MainMenuBigButtonStyle"
+            tools:text="Login"
+            android:text="@{optionVM.isLoggedIn ? @string/play_option_fragment_logout_button : @string/play_option_fragment_login_button}"
+            android:onClick="@{() -> optionVM.onLoginClick()}"
+            app:layout_constraintHeight_percent="0.15"
+            app:layout_constraintWidth_percent="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_offline_play" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

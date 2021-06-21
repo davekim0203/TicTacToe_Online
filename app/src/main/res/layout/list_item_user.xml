@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="playerItem"
+            type="com.davek.tictactoe.models.PlayerItem"/>
+
+        <variable
+            name="searchVM"
+            type="com.davek.tictactoe.viewmodels.SearchOpponentViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            tools:text="m76kim"
+            android:gravity="center_vertical"
+            android:text="@{playerItem.player.nickname}"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_weight="3" />
+
+        <Button
+            android:id="@+id/bt_send_request"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/search_opponent_fragment_request_button"
+            android:onClick="@{() -> searchVM.onOpponentClick(playerItem)}"
+            android:gravity="center"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+</layout>
